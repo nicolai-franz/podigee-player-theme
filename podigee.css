@@ -1,0 +1,16 @@
+.podigee-podcast-player {
+    --pp-bg-color: #fafafa;
+    --pp-primary-color: #c0392b;
+    --pp-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.pp-control-play {
+    background-color: #c0392b !important;
+    color: #ffffff !important;
+    border-radius: 9999px !important;
+}
+
+.pp-episode-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
