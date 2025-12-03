@@ -1,16 +1,218 @@
+/* ================================
+   PRO – Podigee Player Theme
+   ================================ */
+
+/* Farb-Variablen für schnelle Anpassungen */
+:root {
+  --pro-red: #e33828;
+  --pro-red-dark: #c12c1f;
+  --pro-bg-soft: #eaf4f3;
+  --pro-text-main: #1d353c;
+  --pro-text-muted: #5c6b72;
+  --pro-border-soft: rgba(0, 0, 0, 0.06);
+  --pro-radius: 10px;
+}
+
+/* Haupt-Container im Theme-HTML */
+.pro-player {
+  box-sizing: border-box;
+  max-width: 720px;
+  margin: 2rem auto;
+  background: var(--pro-bg-soft);
+  border-radius: var(--pro-radius);
+  border: 1px solid var(--pro-border-soft);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: 1.25rem 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--pro-text-main);
+}
+
+/* Mobile-Optimierung */
+@media (max-width: 600px) {
+  .pro-player {
+    margin: 1.25rem 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Kopfbereich: Podcastname + Titel */
+.pro-player-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.pro-player-podcast {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--pro-red);
+}
+
+.pro-player-title {
+  font-size: 1.1rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.pro-player-subtitle {
+  font-size: 0.9rem;
+  color: var(--pro-text-muted);
+}
+
+/* Hauptzeile: Play-Button + Progress + Zeiten */
+.pro-player-main {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .pro-player-main {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 0.75rem;
+  }
+
+  .pro-player-time {
+    grid-column: 1 / -1;
+    justify-self: flex-end;
+  }
+}
+
+/* Play/Pause-Button */
+.pro-player-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--pro-red);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    transform 100ms ease,
+    box-shadow 150ms ease;
+  box-shadow: 0 0.35rem 0.8rem rgba(227, 56, 40, 0.35);
+}
+
+.pro-player-button:hover,
+.pro-player-button:focus-visible {
+  background: var(--pro-red-dark);
+  outline: none;
+}
+
+.pro-player-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+/* SVG-Icon im Button */
+.pro-player-button svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/* Fortschrittsbalken */
+.pro-player-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pro-player-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(29, 53, 60, 0.14);
+  overflow: hidden;
+}
+
+/* Die Breite dieses Elements setzt Podigee per JS */
+.pro-player-progress-fill {
+  position: absolute;
+  inset: 0 100% 0 0; /* Standard: 0 % Fortschritt */
+  background: linear-gradient(90deg, var(--pro-red), #f26a3a);
+  border-radius: inherit;
+}
+
+/* Optionales Thumb/Handle */
+.pro-player-progress-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--pro-red);
+  box-shadow: 0 0 0 2px rgba(227, 56, 40, 0.15);
+}
+
+/* Zeiten */
+.pro-player-time {
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+  color: var(--pro-text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.pro-player-time-current {
+  font-weight: 600;
+  color: var(--pro-text-main);
+}
+
+.pro-player-time-duration {
+  opacity: 0.8;
+}
+
+/* Footer-Zeile für Kapitel, Download, Teilen etc. */
+.pro-player-footer {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--pro-text-muted);
+}
+
+.pro-player-footer a {
+  color: var(--pro-red);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+.pro-player-footer a:hover,
+.pro-player-footer a:focus-visible {
+  border-color: currentColor;
+}
+
+/* Falls das Theme im iFrame läuft */
+html,
+body {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+}
+
+/* Sicherheitshalber: keine Überbreite */
+.pro-player,
 .podigee-podcast-player {
-    --pp-bg-color: #fafafa;
-    --pp-primary-color: #c0392b;
-    --pp-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.pp-control-play {
-    background-color: #c0392b !important;
-    color: #ffffff !important;
-    border-radius: 9999px !important;
-}
-
-.pp-episode-title {
-    font-weight: 600;
-    font-size: 1.1rem;
+  max-width: 100%;
 }
